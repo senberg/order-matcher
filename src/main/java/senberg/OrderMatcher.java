@@ -21,9 +21,8 @@ public class OrderMatcher {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-            while (true) {
-                String input = bufferedReader.readLine().toUpperCase();
-                Matcher inputMatcher = commandPattern.matcher(input);
+            for(String input = bufferedReader.readLine(); input != null; input = bufferedReader.readLine()){
+                Matcher inputMatcher = commandPattern.matcher(input.toUpperCase());
 
                 if(validCommand(inputMatcher)){
                     String command = inputMatcher.group(1);
