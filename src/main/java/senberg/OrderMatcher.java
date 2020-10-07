@@ -67,7 +67,7 @@ public class OrderMatcher {
                 } else {
                     Order bestSellOrder = sellOrderList.getBest();
                     int actualVolume = Math.min(volume, bestSellOrder.getVolume());
-                    trade("SELL", actualVolume, bestSellOrder.getPrice());
+                    trade(actualVolume, bestSellOrder.getPrice());
                     sellOrderList.decreaseBest(actualVolume);
                     volume -= actualVolume;
                     // A trade has been completed. The next loop iteration will handle any remaining volume.
@@ -81,7 +81,7 @@ public class OrderMatcher {
                 } else {
                     Order bestBuyOrder = buyOrderList.getBest();
                     int actualVolume = Math.min(volume, bestBuyOrder.getVolume());
-                    trade("BUY", actualVolume, bestBuyOrder.getPrice());
+                    trade(actualVolume, bestBuyOrder.getPrice());
                     buyOrderList.decreaseBest(actualVolume);
                     volume -= actualVolume;
                     // A trade has been completed. The next loop iteration will handle any remaining volume.
@@ -90,8 +90,8 @@ public class OrderMatcher {
         }
     }
 
-    private void trade(String type, int volume, int price){
-        System.out.println(type + " " + volume + "@" + price);
+    private void trade(int volume, int price){
+        System.out.println("TRADE " + volume + "@" + price);
     }
 
     private void printOrderBook() {
